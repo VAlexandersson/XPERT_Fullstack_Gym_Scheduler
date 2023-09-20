@@ -1,0 +1,23 @@
+{
+  "name": "backend-xpert-gym",
+  "version": "1.0.0",
+  "description": "Backend for Xpert Gym",
+  "main": "../dist/index.js",
+  "scripts": {},
+  "keywords": [
+    "node",
+    "typescript",
+    "express",
+    "postgresql"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/pg": "^8.10.2"
+  }
+}
