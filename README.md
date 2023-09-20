@@ -1,9 +1,23 @@
-# Awesome project
+# Xpert Gym Web-app
+
+## What can be broken down into modules?
+
+### What will speak with what?
+
+### Should we use a CRUD backend API?
+
+
+
+
+
+
+---
+
 This project was created by the following people:
 
-Gabriel Bülow<br>
-Isak Ekman<br>
-Martin Karlsson<br>
-Mohammad Faisal Issaqi<br>
-Viktor Alexandersson<br>
+Gabriel Bülow
+Isak Ekman
+Martin Karlsson
+Mohammad Faisal Issaqi
+Viktor Alexandersson
 
