@@ -16,30 +16,29 @@ erDiagram
     USER }o--o{ WORKOUT : uses    
 
     USER {
-        id int PK 
-        username string 
+        id int
+        username string
         password string
-        role_id string FK
-        workout_catalogue object 
+        role_id string
+        workout_catalogue object
     }
     WORKOUT {
-       id int PK 
+       id int
        name string
-       user_id int FK 
+       user_id int
     }
     EXERCISE {
-        id int PK
+        id int
         name string
         description string
         sets int
         reps int
         intervalles int
     }
-
     USER_EXERCISE {
-       id int PK
-       exercise_id int FK
-       workout_id int FK 
+       id int
+       exercise_id int
+       workout_id int
     }
 
 ```
