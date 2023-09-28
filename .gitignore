@@ -1,0 +1,55 @@
+# Node modules
+node_modules/
+
+
+# Build Artifacts
+backend/dist/
+build/
+
+# Log files
+*.log
+
+# Environment Configuration
+.env
+
+# Editor folders and files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Operating System files
+.DS_Store
+Thumbs.db
+
+# SQLite Database
+*.db
+*.sqlite
+
+# TypeScript Compiler Output
+*.tsbuildinfo
+
+# Yarn Integrity file
+.yarn-integrity
+
+# Temporary files
+*.tmp
+*.temp
+
+# React Specific
+/public/
+/.pnp/
+.pnp.js
+
+# Compiled JavaScript files
+*.js
+*.jsx
+*.es
+*.es6
+*.mjs
+
+# Compiled CSS files
+*.css
+
+# Compiled map
+

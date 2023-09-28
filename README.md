@@ -1,7 +1,21 @@
 # Xpert Gym Web-app
 
+
 ---
 
+### Backend 
+
+```bash
+npm install express sqlite3 typescript cors @types/cors @types/node @types/express @types/node @types/
+
+
+npm install -D concurrently nodemon
+```
+
+### Frontend
+
+- init front end with
+`npx create-react-app . --template typescript`
 
 
 
