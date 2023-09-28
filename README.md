@@ -15,9 +15,10 @@ npm run dev # kommer köra dev scriptet som står i package.json filen.
 <details>
 <summary>package.json dependencies</summary>
 
-### Backend
 
 `devDependencies` kan ignoreras.
+
+### Backend
 
 ```json
   "dependencies": {
