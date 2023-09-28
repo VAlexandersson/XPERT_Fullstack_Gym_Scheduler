@@ -1,21 +1,72 @@
 # Xpert Gym Web-app
 
 
----
+Öppna två terminaler, gå till `backend` mappen med en och `frontend` med den andra.
 
-### Backend 
+Kör dessa script i båda terminalerna:
 
 ```bash
-npm install express sqlite3 typescript cors @types/cors @types/node @types/express @types/node @types/
+npm install # kommer att installera alla dependencies som står i package.json filen
 
+npm run dev # kommer köra dev scriptet som står i package.json filen.
+```
 
-npm install -D concurrently nodemon
+<p>
+<details>
+<summary>package.json dependencies</summary>
+
+### Backend
+
+`devDependencies` kan ignoreras.
+
+```json
+  "dependencies": {
+    "@types/cors": "^2.8.14",
+    "@types/express": "^4.17.18",
+    "@types/node": "^20.7.0",
+    "@types/sqlite3": "^3.1.9",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6",
+    "typescript": "^5.2.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "nodemon": "^3.0.1"
+  }
 ```
 
 ### Frontend
 
-- init front end with
-`npx create-react-app . --template typescript`
+```json
+
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react": "^4.0.3",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5"
+  }
+
+```
+
+</details>
+</p>
+
+
+
+
+
+---
 
 
 
