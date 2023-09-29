@@ -1,33 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
+import fitness from './assets/fitness-app.svg'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [message, setMessage] = useState('')
+
+
+  useEffect(() => {
+    fetch('http://localhost:4001/api/test')
+      .then(response => response.text())
+      .then(data => setMessage(data))
+      .catch(error => console.error('Error fetching data: ', error));
+  }, []);
+
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
+        <a href="https://upload.wikimedia.org/wikipedia/commons/d/dd/Children%27s_outdoor_gymnasium_circa_19th_Century.jpg" target="_blank">
+          <img src={fitness} className="logo" alt="fitness logo" />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>{message}</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+        Click on the logo </p>
     </>
   )
 }
