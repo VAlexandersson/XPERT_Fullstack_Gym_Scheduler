@@ -1,37 +1,22 @@
-import { useEffect, useState } from 'react'
-import fitness from './assets/fitness-app.svg'
-import './App.css'
-
-function App() {
-  const [count, setCount] = useState(0)
-  const [message, setMessage] = useState('')
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
-  useEffect(() => {
-    fetch('http://localhost:4001/api/test')
-      .then(response => response.text())
-      .then(data => setMessage(data))
-      .catch(error => console.error('Error fetching data: ', error));
-  }, []);
+import LoginComponent from './components/LoginComponent';
+import TestPage from './containers/TestPage';
 
+import './App.css';
 
+const App: React.FC = () => {
   return (
-    <>
+    <Router>
       <div>
-        <a href="https://upload.wikimedia.org/wikipedia/commons/d/dd/Children%27s_outdoor_gymnasium_circa_19th_Century.jpg" target="_blank">
-          <img src={fitness} className="logo" alt="fitness logo" />
-        </a>
+        <Routes>
+          <Route path="/login" Component ={LoginComponent}/>
+          <Route path="/test" Component ={TestPage}/>
+        </Routes>
       </div>
-      <h1>{message}</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-      </div>
-      <p className="read-the-docs">
-        Click on the logo </p>
-    </>
-  )
+    </Router>
+  );
 }
 
 export default App
