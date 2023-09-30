@@ -4,7 +4,7 @@ import fitness from '../assets/fitness-app.svg';
 
 import '../App.css';
 
-const FAQPage: React.FC = () => {
+const TestPage: React.FC = () => {
     const [count, setCount] = useState(0);
     const [message, setMessage] = useState('');
     useEffect(() => {
@@ -33,4 +33,4 @@ return (
   )
 };
 
-export default FAQPage;
+export default TestPage;
