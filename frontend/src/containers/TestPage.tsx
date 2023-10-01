@@ -1,18 +1,14 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
+import TestComponent from '../components/TestComponent';
+
 import fitness from '../assets/fitness-app.svg';
 
 import '../App.css';
 
 const TestPage: React.FC = () => {
     const [count, setCount] = useState(0);
-    const [message, setMessage] = useState('');
-    useEffect(() => {
-        fetch('http://localhost:4001/api/test')
-            .then(response => response.text())
-            .then(data => setMessage(data))
-            .catch(error => console.error('Error fetching data: ', error));
-    }, []);
 
 return (
     <>
@@ -21,7 +17,7 @@ return (
           <img src={fitness} className="logo" alt="fitness logo" />
         </a>
       </div>
-      <h1>{message}</h1>
+      <TestComponent />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}

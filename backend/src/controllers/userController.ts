@@ -4,7 +4,7 @@ import db from '../database/db';
 
 export const testFunction = (req: Request, res: Response) => {
     console.log('testFunction');
-    res.send('XPERT API!');
+    res.send('userController testFunction!');
 
 }
 
