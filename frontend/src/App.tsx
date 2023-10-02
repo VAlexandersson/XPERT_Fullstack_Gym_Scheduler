@@ -1,27 +1,25 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
-
-import LoginComponent from './components/LoginComponent';
-import NavigationBar from './components/NavigationBar';
-
-
-import HomePage from './containers/HomePage';
-import TestPage from './containers/TestPage';
-import FAQPage from './containers/FAQPage';
-
-
 import './App.css';
+
+import HomePage from './containers/HomePage.tsx'
+import LoginPage from "./containers/LoginPage.tsx";
+import ExercisePage from "./containers/ExercisePage.tsx";
+import AdminPage from "./containers/AdminPage.tsx";
+import FAQPage from './containers/FAQPage';
+import WorkoutPage from "./containers/WorkoutPage.tsx";
+
 
 const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <NavigationBar />
         <Routes>
           <Route path="/" Component ={HomePage}/>
-          <Route path="/login" Component ={LoginComponent}/>
-          <Route path="/test" Component ={TestPage}/>
+          <Route path="/login" Component={LoginPage}/>
+          <Route path="/exercises" Component={ExercisePage}/>
+          <Route path="/workout" Component={WorkoutPage}/>
           <Route path="/faq" Component={FAQPage}/>
+          <Route path="/admin" Component={AdminPage}/>
         </Routes>
       </div>
     </Router>
