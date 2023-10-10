@@ -80,7 +80,7 @@ xpert-app/
 │   │   │   ├── calendar.tsx  # example comps..
 │   │   │   └── catalog.tsx
 │   │   ├── App.tsx           # main app component
-│   │   └── index.tsx         # entry point
+│   │   └── LoginPage.tsx         # entry point
 │   ├── public/               # static files
 │   ├── package.json          # frontend deps.
 │   └── tsconfig.json         # typeScript conf. 
