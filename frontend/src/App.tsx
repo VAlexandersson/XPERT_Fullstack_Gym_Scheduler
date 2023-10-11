@@ -4,6 +4,9 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 import ProTip from "./components/ProTip";
+import LoginPage from "./LoginPage";
+import SignUpPage from "./SignUpPage";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 
 function Copyright() {
   return (
@@ -18,15 +21,13 @@ function Copyright() {
 }
 
 export default function App() {
-  return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI Vite.js example in TypeScript
-        </Typography>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
-  );
+
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" Component={LoginPage}></Route>
+                <Route path="/sign-up" Component={SignUpPage}></Route>
+            </Routes>
+        </Router>
+    );
 }
