@@ -23,19 +23,19 @@ export default function SignIn() {
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        const response = fetch('http://localhost:4001/api/login', {
+        fetch('http://localhost:4001/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username, password }),
+        })
+        .then((response) => {
+            if(response.status === 200) {
+                console.log('Login successful!');
+                window.location.href = 'http://localhost:5173/';
+            } else {
+                throw new Error('Wrong username or password!');
+            }
         });
-
-        const data = await response.json();
-        if(data.status === 'ok') {
-            window.location.href = '/';
-        } else {
-            alert('Wrong username or password!');
-        }
-
     };
 
     return (

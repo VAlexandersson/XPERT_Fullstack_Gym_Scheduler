@@ -2,12 +2,26 @@ import { Request, Response } from 'express';
 
 import db from '../database/db';
 
-export const testFunction = (req: Request, res: Response) => {
+export const getAllUsers = (req: Request, res: Response) => {
     console.log('testFunction');
-    res.send('userController testFunction!');
 
+    db.all('SELECT * FROM User', (err, rows) => {
+
+        if (err) {
+            console.log(err);
+            return res.status(500).json({ message: 'Error getting users' });
+        } 
+        if (rows.length > 0) {
+            console.log(rows);
+             return res
+            .status(200)
+            .json({ message: rows });
+        }
+        console.log('No users found');
+        return res.status(404).json({ message: 'No users found' });
+
+    });
 }
-
 
 export const createUser = (req: Request, res: Response) => {
     console.log('createUser');
@@ -23,14 +37,17 @@ export const createUser = (req: Request, res: Response) => {
 
 
 export const getUser = (req: Request, res: Response) => {
-    const { gym_id, password } = req.body;
+    const { username, password } = req.body;
     console.log('getUser');
-    db.get('SELECT * FROM users WHERE gym_id = ? AND password = ?', [gym_id, password], (err, row) => {
+    console.log(username);
+    console.log(password);
+    db.get('SELECT * FROM User WHERE username = ? AND password = ?', [username, password], (err, row) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Error getting user' });
         }
         if (row) {
+            console.log(row);
             return res.status(200).json({ message: 'Success', user: row });
         }
         console.log('User not found');
