@@ -8,6 +8,13 @@ export const testFunction = (req: Request, res: Response) => {
 
 }
 
+export const testThing = (req : Request, res : Response) => {
+    console.log("TEST")
+    let a = JSON.parse(req.body)
+    res.status(200)
+    res.send("TEST: " + a.membershipID)
+}
+
 
 export const createUser = (req: Request, res: Response) => {
     console.log('createUser');
