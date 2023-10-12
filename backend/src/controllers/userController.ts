@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import db from '../database/db';
+import { Console } from 'console';
 
 export const getAllUsers = (req: Request, res: Response) => {
     console.log('testFunction');
@@ -25,14 +26,25 @@ export const getAllUsers = (req: Request, res: Response) => {
 
 export const createUser = (req: Request, res: Response) => {
     console.log('createUser');
-    const { name, gym_id, password } = req.body;
-    db.run('INSERT INTO users (name, gym_id, password) VALUES (?, ?, ?)', [name, gym_id, password], (err) => {
+    const { username, gym_id, password } = req.body;
+    db.get('SELECT * FROM User WHERE ID = ?', [gym_id], (err, row) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Error creating user' });
         }
+        if (row) {
+            console.log('User already exists');
+            return res.status(409).json({ message: 'User already exists' });
+        }
+        db.run('INSERT INTO User (ID, username ,password) VALUES (?, ?, ?)', [gym_id, username, password], (err) => {
+            if (err) {
+                console.log(err);
+                return res.status(500).json({ message: 'Error creating user' });
+            }
         return res.status(201).json({ message: 'Success User created' });
     });
+    });
+    console.log('test');
 }
 
 

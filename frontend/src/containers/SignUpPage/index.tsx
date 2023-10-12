@@ -29,9 +29,9 @@ export default function SignUp() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ gym_id, username ,password }),
       }).then((response) => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           console.log("Sign up successful!");
-          window.location.href = "http://localhost:5173/";
+          window.location.href = "http://localhost:5173/login";
         } else {
           throw new Error("WRONG");
         }
