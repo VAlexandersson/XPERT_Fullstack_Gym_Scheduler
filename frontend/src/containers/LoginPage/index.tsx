@@ -17,7 +17,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const [username, setUsername] = React.useState('');
+    const [gym_id, setGymId] = React.useState('');
     const [password, setPassword] = React.useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -26,7 +26,7 @@ export default function SignIn() {
         fetch('http://localhost:4001/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
+            body: JSON.stringify({ gym_id, password }),
         })
         .then((response) => {
             if(response.status === 200) {
@@ -61,12 +61,12 @@ export default function SignIn() {
                             margin="normal"
                             required
                             fullWidth
-                            id="username"
-                            label="Username"
-                            name="username"
-                            autoComplete="username"
+                            id="gym_id"
+                            label="Gym ID"
+                            name="gym_id"
+                            autoComplete="gym-id"
                             autoFocus
-                            onChange={(e) => setUsername(e.target.value)}
+                            onChange={(e) => setGymId(e.target.value)}
                         />
                         <TextField
                             margin="normal"

@@ -37,11 +37,11 @@ export const createUser = (req: Request, res: Response) => {
 
 
 export const getUser = (req: Request, res: Response) => {
-    const { username, password } = req.body;
+    const { gym_id, password } = req.body;
     console.log('getUser');
-    console.log(username);
+    console.log(gym_id);
     console.log(password);
-    db.get('SELECT * FROM User WHERE username = ? AND password = ?', [username, password], (err, row) => {
+    db.get('SELECT * FROM User WHERE username = ? AND password = ?', [gym_id, password], (err, row) => {
         if (err) {
             console.log(err);
             return res.status(500).json({ message: 'Error getting user' });
