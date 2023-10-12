@@ -13,14 +13,15 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {useEffect, useState} from "react";
+import Easy from '../../assets/Easy.png';
+import Medium from '../../assets/Medium.png';
+import Hard from '../../assets/Hard.png';
 
 
-const cards = [0, 1, 2];
-let answer;
-let exercises;
+/*I get some errors in this file, but it seems to work fine*/
+const cards = [];
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -28,7 +29,7 @@ const defaultTheme = createTheme();
 export default function Exercises()
 {
 
-    const [nodes, setNodes] = useState();
+    const [nodes, setNodes] = useState({});
     const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -61,14 +62,41 @@ export default function Exercises()
 
 }
 
+function Difficulty(difficulty)
+{
+    let boxStyle = {width: '25%', position: 'relative', left:'10%', top: '5%'};
+
+    console.log(difficulty.difficulty)
+    if (difficulty.difficulty == 3) {
+        return (
+            <Box sx={boxStyle}>
+                <img src={Hard} style={{width:'100%'}} alt={'hard'}></img>
+            </Box>);
+    }
+    if (difficulty.difficulty == 2) {
+        return (
+            <Box sx={boxStyle}>
+                <img src={Medium} style={{width:'100%'}} alt={'medium'}></img>
+            </Box>);
+    }
+    else
+    {
+        return (
+            <Box sx={boxStyle}>
+                <img src={Easy} style={{width:'100%'}} alt={'easy'}></img>
+            </Box>);
+    }
+}
+
 function Album(allExercises) {
 
-    console.log(allExercises.allExercises.catalog);
+
     let catalog = allExercises.allExercises.catalog;
     let exercises : string[] = [];
     for (let i = 0; i < catalog.length; i++)
     {
         exercises.push(catalog[i])
+        cards.push(i)
     }
     console.log(exercises)
 
@@ -144,6 +172,7 @@ function Album(allExercises) {
                                     <CardActions>
                                         <Button size="small">View</Button>
                                         <Button size="small">Edit</Button>
+                                        <Difficulty difficulty={exercises[card].difficulty}></Difficulty>
                                     </CardActions>
                                 </Card>
                             </Grid>
