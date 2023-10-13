@@ -18,10 +18,11 @@ import {useEffect, useState} from "react";
 import Easy from '../../assets/Easy.png';
 import Medium from '../../assets/Medium.png';
 import Hard from '../../assets/Hard.png';
+import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 
 
 /*I get some errors in this file, but it seems to work fine*/
-const cards = [];
+
 
 // TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
@@ -66,7 +67,6 @@ function Difficulty(difficulty)
 {
     let boxStyle = {width: '25%', position: 'relative', left:'10%', top: '5%'};
 
-    console.log(difficulty.difficulty)
     if (difficulty.difficulty == 3) {
         return (
             <Box sx={boxStyle}>
@@ -88,26 +88,72 @@ function Difficulty(difficulty)
     }
 }
 
+function DifficultyFilter(props : {onFilter})
+{
+    const [difficulty, setDifficulty] = useState(0)
+    function handleChange(a, choice) {
+        setDifficulty(choice.props.value)
+        console.log(choice.props.value)
+
+        let answer = fetch("http://localhost:4001/api/browse/" + choice.props.value, {
+            method: "GET",
+            headers: {
+                "Content-type": "text/html; charset=UTF-8"
+            }
+        }).then(async (response) => {
+            let cat = await response.json()
+            console.log(cat)
+            props.onFilter(cat)
+        })
+    }
+
+
+    return(
+
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Difficulty</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={difficulty}
+                    label="Difficulty"
+                    onChange={handleChange}
+                >
+                    <MenuItem value={0}>All</MenuItem>
+                    <MenuItem value={1}>Beginner</MenuItem>
+                    <MenuItem value={2}>Intermediate</MenuItem>
+                    <MenuItem value={3}>Advanced</MenuItem>
+                </Select>
+            </FormControl>
+
+    )
+}
+
 function Album(allExercises) {
 
+    const cards = [];
+    const [catalog, setCatalog] = useState(allExercises.allExercises.catalog);
 
-    let catalog = allExercises.allExercises.catalog;
-    let exercises : string[] = [];
     for (let i = 0; i < catalog.length; i++)
     {
-        exercises.push(catalog[i])
-        cards.push(i)
+        cards.push(i) /*This tells us how many "cards" there should be on the page
+                      *This number is equal to the amount of exercises*/
     }
-    console.log(exercises)
+
+    function handleFilter(filteredCatalog : Object[])
+    {
+        console.log("HANDLEFILTER")
+        console.log(filteredCatalog)
+        setCatalog(filteredCatalog);
+    }
 
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
             <AppBar position="relative">
                 <Toolbar>
-                    <CameraIcon sx={{ mr: 2 }} />
                     <Typography variant="h6" color="inherit" noWrap>
-                        Album layout
+                        Xperta Workout Planner
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -140,11 +186,17 @@ function Album(allExercises) {
                             spacing={2}
                             justifyContent="center"
                         >
-                            <Button variant="contained">Sign up now</Button>
-                            <Button variant="outlined">Swag</Button>
+                            <Button variant="contained" href="signup">Sign up now</Button>
                         </Stack>
                     </Container>
                 </Box>
+                <Container>
+                    <Grid container spacing={2}>
+                        <Grid item xs={2}>
+                            <DifficultyFilter onFilter={handleFilter}/>
+                        </Grid>
+                    </Grid>
+                </Container>
                 <Container sx={{ py: 8 }} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
@@ -163,16 +215,16 @@ function Album(allExercises) {
                                     />
                                     <CardContent sx={{ flexGrow: 1 }}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            {exercises[card].name}
+                                            {catalog[card].name}
                                         </Typography>
                                         <Typography>
-                                            {exercises[card].description}
+                                            {catalog[card].description}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
                                         <Button size="small">View</Button>
                                         <Button size="small">Edit</Button>
-                                        <Difficulty difficulty={exercises[card].difficulty}></Difficulty>
+                                        <Difficulty difficulty={catalog[card].difficulty}></Difficulty>
                                     </CardActions>
                                 </Card>
                             </Grid>
@@ -183,7 +235,7 @@ function Album(allExercises) {
             {/* Footer */}
             <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
                 <Typography variant="h6" align="center" gutterBottom>
-                    Footer
+
                 </Typography>
                 <Typography
                     variant="subtitle1"
@@ -191,7 +243,7 @@ function Album(allExercises) {
                     color="text.secondary"
                     component="p"
                 >
-                    Something here to give the footer a purpose!
+
                 </Typography>
             </Box>
             {/* End footer */}
