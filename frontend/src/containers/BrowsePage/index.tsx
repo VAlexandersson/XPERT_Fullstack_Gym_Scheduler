@@ -93,7 +93,6 @@ function DifficultyFilter(props : {onFilter})
     const [difficulty, setDifficulty] = useState(0)
     function handleChange(a, choice) {
         setDifficulty(choice.props.value)
-        console.log(choice.props.value)
 
         let answer = fetch("http://localhost:4001/api/browse/" + choice.props.value, {
             method: "GET",
@@ -101,9 +100,7 @@ function DifficultyFilter(props : {onFilter})
                 "Content-type": "text/html; charset=UTF-8"
             }
         }).then(async (response) => {
-            let cat = await response.json()
-            console.log(cat)
-            props.onFilter(cat)
+            props.onFilter(await response.json())
         })
     }
 
@@ -131,18 +128,19 @@ function DifficultyFilter(props : {onFilter})
 
 function Album(allExercises) {
 
-    const cards = [];
+    let cards = [];
+
+
     const [catalog, setCatalog] = useState(allExercises.allExercises.catalog);
 
-    for (let i = 0; i < catalog.length; i++)
-    {
+    for (let i = 0; i < catalog.length; i++) {
         cards.push(i) /*This tells us how many "cards" there should be on the page
                       *This number is equal to the amount of exercises*/
     }
+    console.log(cards.length)
 
-    function handleFilter(filteredCatalog : Object[])
-    {
-        console.log("HANDLEFILTER")
+
+    function handleFilter(filteredCatalog) {
         console.log(filteredCatalog)
         setCatalog(filteredCatalog);
     }
