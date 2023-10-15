@@ -1,6 +1,6 @@
 
 import * as db from '../database/db';
-import { ValidationError, NotFoundError } from '../error/errors';
+import { ValidationError, NotFoundError } from '../middleware/errors';
 
 
 export const createEntity = (table: string, data: any) => {

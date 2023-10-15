@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as genericService from "../services/genericService";
+import * as genericService from "../services/generic-service";
 
 
 export const createEntityController = (table: string) => (req: Request, res: Response<any>, next: NextFunction) => {
