@@ -17,19 +17,19 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-    const [gym_id, setGymId] = React.useState(''); 
+    const [id, setId] = React.useState(''); 
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
 
     const handleSubmit = async (event: React.FormEvent) => {
       event.preventDefault();
 
-      fetch("http://localhost:4001/api/createUser", {
+      fetch("http://localhost:4001/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gym_id, username ,password }),
+        body: JSON.stringify({ id, username ,password }),
       }).then((response) => {
-        if (response.status === 201) {
+        if (response.status === 201 || response.status === 200) {
           console.log("Sign up successful!");
           window.location.href = "http://localhost:5173/login";
         } else {
@@ -74,11 +74,11 @@ export default function SignUp() {
                                 <TextField
                                     required
                                     fullWidth
-                                    id="gym_id"
-                                    label="gym_id"
-                                    name="gym_id"
+                                    id="id"
+                                    label="id"
+                                    name="Gym ID"
                                     autoComplete="gym-id"
-                                    onChange={(e) => setGymId(e.target.value)}
+                                    onChange={(e) => setId(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12}>

@@ -18,7 +18,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const [gym_id, setGymId] = React.useState('');
+    const [id, setId] = React.useState('');
     const [password, setPassword] = React.useState('');
 
       const [open, setOpen] = React.useState(false);
@@ -35,7 +35,7 @@ export default function SignIn() {
         fetch('http://localhost:4001/api/login', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ gym_id, password }),
+            body: JSON.stringify({ id, password }),
         })
         .then((response) => {
             if(response.status === 200) {
@@ -75,12 +75,12 @@ export default function SignIn() {
                 margin="normal"
                 required
                 fullWidth
-                id="gym_id"
+                id="id"
                 label="Gym ID"
-                name="gym_id"
+                name="id"
                 autoComplete="gym-id"
                 autoFocus
-                onChange={(e) => setGymId(e.target.value)}
+                onChange={(e) => setId(e.target.value)}
               />
               <TextField
                 margin="normal"

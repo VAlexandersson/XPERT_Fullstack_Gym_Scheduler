@@ -1,8 +1,11 @@
 import {Router} from 'express';
 import * as genericController from '../controllers/genericController';
-
+import * as userController from '../controllers/userController';
 const router:Router = Router();
 export default router;
+
+router.route('/login').post(userController.loginUserController('User'));
+router.route('/register').post(userController.registerUserController('User'));
 
 router.route('/user').post(genericController.createEntityController('User'));
 router.route('/user/:id').get(genericController.getEntityByIdController('User'));
