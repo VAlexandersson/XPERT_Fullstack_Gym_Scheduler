@@ -128,6 +128,7 @@ function Album(allExercises) {
         cards.push(i) /*This tells us how many "cards" there should be on the page
                       *This number is equal to the amount of exercises*/
     }
+    console.log(cards.length)
 
     function changeCatalog(newCatalog)
     {
