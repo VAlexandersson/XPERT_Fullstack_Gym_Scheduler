@@ -1,7 +1,6 @@
 import * as React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Button from '@mui/material/Button';
-import CameraIcon from '@mui/icons-material/PhotoCamera';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -94,17 +93,7 @@ function DifficultyFilter(props : {onFilter})
     function handleChange(a, choice) {
         setDifficulty(choice.props.value)
         console.log(choice.props.value)
-
-        let answer = fetch("http://localhost:4001/api/browse/" + choice.props.value, {
-            method: "GET",
-            headers: {
-                "Content-type": "text/html; charset=UTF-8"
-            }
-        }).then(async (response) => {
-            let cat = await response.json()
-            console.log(cat)
-            props.onFilter(cat)
-        })
+        props.onFilter(choice.props.value)
     }
 
 
@@ -131,7 +120,7 @@ function DifficultyFilter(props : {onFilter})
 
 function Album(allExercises) {
 
-    const cards = [];
+    let cards = [];
     const [catalog, setCatalog] = useState(allExercises.allExercises.catalog);
 
     for (let i = 0; i < catalog.length; i++)
@@ -140,11 +129,50 @@ function Album(allExercises) {
                       *This number is equal to the amount of exercises*/
     }
 
-    function handleFilter(filteredCatalog : Object[])
+    function changeCatalog(newCatalog)
     {
-        console.log("HANDLEFILTER")
-        console.log(filteredCatalog)
-        setCatalog(filteredCatalog);
+        cards = []
+
+        for (let i = 0; i < newCatalog.length; i++)
+        {
+            cards.push(i) /*This tells us how many "cards" there should be on the page
+                      *This number is equal to the amount of exercises*/
+        }
+
+        setCatalog(newCatalog)
+    }
+
+    function getAllExercises(){
+        fetch("http://localhost:4001/api/browse", {
+            method: "GET",
+            headers: {
+                "Content-type": "text/html; charset=UTF-8"
+            }
+        })
+            .then(async (response) =>
+            {
+                changeCatalog(await response.json());
+            });
+    }
+
+    function handleFilter(difficultyLevel)
+    {
+        console.log("HANDLEFILTER");
+        let filteredCatalog = [];
+
+        if (difficultyLevel == 0)
+        {
+            getAllExercises()
+        }
+
+        else {
+            for (let i = 0; i < catalog.length; i++) {
+                if (catalog[i].difficulty == difficultyLevel) {
+                    filteredCatalog.push(catalog[i])
+                }
+            }
+            changeCatalog(filteredCatalog)
+        }
     }
 
     return (

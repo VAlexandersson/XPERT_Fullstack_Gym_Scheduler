@@ -42,19 +42,7 @@ export const getExercises = (req : Request, res : Response) => {
     })
 }
 
-export const getExercisesOfDifficulty = (req : Request, res : Response, diff : string) => {
-    db.all('SELECT * FROM CatalogExercise WHERE difficulty = ?', diff, (err, rows) => {
-        if (err)
-        {
-            console.log(err);
-            return res.status(500).json({ message: 'Error getting exercises' });
-        }
-        if (rows)
-        {
-            return res.status(200).json({ message: 'Success', catalog: rows });
-        }
-    })
-}
+
 
 export const getUser = (req: Request, res: Response) => {
     const { membershipID, password } = req.body;
