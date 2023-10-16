@@ -17,21 +17,25 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 const defaultTheme = createTheme();
 
 export default function SignIn() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const [username, setUsername] = React.useState('');
+    const [password, setPassword] = React.useState('');
+
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        fetch("http://localhost:4001/api/login", {
-            method: "POST",
-            body: JSON.stringify({
-                    "membershipID" : data.get("membershipID"),
-                    "password" : data.get("password")
-                }
-            ),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        })
-            .then(async (response) => console.log(await response.json()))
+
+        const response = fetch('http://localhost:4001/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username, password }),
+        });
+
+        const data = await response.json();
+        if(data.status === 'ok') {
+            window.location.href = '/';
+        } else {
+            alert('Wrong username or password!');
+        }
+
     };
 
     return (
@@ -58,9 +62,11 @@ export default function SignIn() {
                             required
                             fullWidth
                             id="username"
-                            label="Membership ID"
-                            name="membershipID"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
                             autoFocus
+                            onChange={(e) => setUsername(e.target.value)}
                         />
                         <TextField
                             margin="normal"
@@ -71,6 +77,7 @@ export default function SignIn() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={(e) => setPassword(e.target.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
