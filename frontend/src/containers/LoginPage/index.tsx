@@ -22,20 +22,22 @@ export default function SignIn() {
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-
-        const response = fetch('http://localhost:4001/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-        if(data.status === 'ok') {
-            window.location.href = '/';
-        } else {
-            alert('Wrong username or password!');
-        }
-
+        /*
+                const response = fetch('http://localhost:4001/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                });
+        
+                const data = await response.json();
+                if(data.status === 'ok') {
+                    window.location.href = '/';
+                } else {
+                    alert('Wrong username or password!');
+                }
+        */
+        //ändrat från '/' detta till '/profile' för att kolla att min profilePage fungerar
+        window.location.href = '/profile';
     };
 
     return (
