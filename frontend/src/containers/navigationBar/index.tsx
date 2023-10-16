@@ -14,7 +14,7 @@ function NavigationBar() {
     <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          {/* logo could be here later */}
+          <img height="50px" src='../src/assets/expertaLogo.jpg'/>
           <Typography
             variant="h6"
             noWrap
