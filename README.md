@@ -266,6 +266,34 @@ erDiagram
 </p>
 
 
+
+
+
+ändringar i databasen.
+
+Workout 
+  +UserID(fk)   // lättare med join queries
+  -planned_date // en workout can ha fler än en dag planerad(?) blev nytt table ist.
+
+User
+  ID -> Gym_ID
+  +ID (unique)
+  +Role_ID (FK)
+
+- (CLIENT COACH ADMIN tables)
++ Role
+  Role 
+  ID PK
+
+
+Den är rätt tvetydlig med sina namnen (Has, ConsistOf), så för att slippa gå och kolla på grafen hela tiden dö[tes de om till ]  
+
+
+Exercise har en composite PK av Workout id och CatalogExercise ID.
+Detta gör att man ej kan ha en catalogexercise två eller fler gånger. 
+Vill vi detta?
+
+
 ---
 
 *This project was created by the following people:*
