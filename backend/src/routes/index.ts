@@ -9,3 +9,5 @@ export default router;
 router.route('/createUser').post(userController.createUser);
 router.route('/login').post(userController.getUser);
 router.route('/test').get(userController.testFunction);
+router.route('/browse').get(userController.getExercises);
+
