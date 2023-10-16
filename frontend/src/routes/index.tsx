@@ -16,9 +16,6 @@ const PageRoutes: React.FC = () => {
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignUpPage />} />
             <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/" element={<LoginPage/>} />
-            <Route path="/login" element={<LoginPage/>} />
-            <Route path="/signup" element={<SignUpPage/>} />
             <Route path="/" element={
                 <ProtectedRoute isAuthenticated={true}>
                     <Dashboard/>
@@ -27,8 +24,7 @@ const PageRoutes: React.FC = () => {
 
 
             <Route path="/browse" element={<BrowsePage/>} />
-            <Route path="/test" element={<TestPage/>} />
-            <Route path="/loggedin/profile" element={<NavigationBar/>} />
+
         </Routes>
     );
 };

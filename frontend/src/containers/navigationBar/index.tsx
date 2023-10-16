@@ -14,7 +14,7 @@ function NavigationBar() {
     <AppBar position="static" color="transparent">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <img height="50px" src='../src/assets/expertaLogo.jpg'/>
+          <img alt='xperta' height="50px" src='../src/assets/expertaLogo.jpg'/>
           <Typography
             variant="h6"
             noWrap
@@ -36,25 +36,25 @@ function NavigationBar() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 
             <Button
-                href='/loggedin/profile'
+                href='/profile'
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 Profile
               </Button>
               <Button
-                href='/loggedin/excercise'
+                href='/browse'
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 Excercise
               </Button>
               <Button
-                href='/loggedin/workout'
+                href='/workout'
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 Workout
               </Button>
               <Button
-                href='/loggedin/faq'
+                href='/faq'
                 sx={{ my: 2, color: 'black', display: 'block' }}
               >
                 FAQ

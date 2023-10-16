@@ -98,6 +98,7 @@ export default function SignIn() {
                 label="Remember me"
               />
               <Button
+                  href="/profile"
                 type="submit"
                 fullWidth
                 variant="contained"

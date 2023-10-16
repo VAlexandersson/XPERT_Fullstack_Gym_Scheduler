@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-const db = new Database('./db.sqlite');
+const db = new Database('./db1.sqlite');
 
 export const create = (table: string, data: any) => {
     const columns = Object.keys(data).join(', ');
