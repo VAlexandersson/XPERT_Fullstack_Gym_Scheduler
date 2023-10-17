@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
+import useAuthentication from "../hooks/useAuth";
 
 interface ProtectedRouteProps {
   isAuthenticated: boolean;

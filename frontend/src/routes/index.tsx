@@ -10,11 +10,7 @@ const PageRoutes: React.FC = () => {
         <Routes>
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/signup" element={<SignUpPage/>} />
-            <Route path="/" element={
-                <ProtectedRoute isAuthenticated={true}>
-                    <Dashboard/>
-                </ProtectedRoute>
-            } />
+            <Route path="/" element={ <Dashboard/>} />
 
 
         </Routes>

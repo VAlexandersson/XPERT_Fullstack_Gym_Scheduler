@@ -4,13 +4,21 @@ import { ThemeProvider } from "@emotion/react";
 import { CssBaseline } from "@mui/material";
 import theme from "./theme";
 import App from "./App";
+import { AuthProvider } from "./context/AuthProvider";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
-    </ThemeProvider>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
+      </ThemeProvider>
   </React.StrictMode>
 );
 

@@ -1,11 +1,35 @@
 import * as React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import PageRouter from "./routes";
+import { Routes, Route } from 'react-router-dom';
+import Layout from "./containers/Layout";
+import LoginPage from "./containers/LoginPage";
+import SignUpPage from "./containers/SignUpPage";
+import Dashboard from "./containers/Dashboard";
+import Missing from "./containers/Missing";
+import RequireAuth from "./components/RequireAuth";
+import AdminPage from "./containers/AdminPage";
+import OtherPage from "./containers/OtherPage";
+import FAQPage from "./containers/FAQPage";
 
 export default function App() {
   return (
-    <Router>
-      <PageRouter />
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+
+
+        <Route element={<RequireAuth allowedRoles={[1, 2, 3]}/>}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/other" element={<OtherPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+
+        </Route>
+        <Route element={<RequireAuth allowedRoles={[2, 3]}/>}>
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
+        <Route path="*" element={<Missing/>}/>
+      </Route>
+    </Routes>
   );
 }
