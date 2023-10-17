@@ -14,7 +14,7 @@ export const createEntityController = (table: string) => (req: Request, res: Res
 export const getEntityByIdController = (table: string) => (req: Request, res: Response<any>, next: NextFunction) => {
     try {
         const entity = genericService.getEntityById(table, Number(req.params.id));
-        res.json(entity);
+        return res.json(entity);
     } catch (error) {
         next(error);
     }

@@ -4,8 +4,8 @@ import cors from 'cors';
 import SQLiteStore from 'connect-sqlite3';
 
 
-import { errorHandler } from './middleware/error'
-import { isAuthenticated } from './middleware/auth';
+import { errorHandler } from './middleware/error-middleware'
+import { isAuthenticated } from './middleware/auth-middleware';
 
 import router from './routes/api-routing';
 import authRouter from './routes/authentication';
@@ -25,22 +25,23 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 1000 * 60 * 60,
-//         httpOnly: false,
-         secure: false
+        maxAge: 1000 * 60 * 1,
+        secure: false
     },
 }));
 
 
 app
-    .use(cors({origin: '*'}   ))
-    .use(express.json())
-    .use(errorHandler);
+  .use(cors({ 
+    origin: true,
+    credentials: true
+    }))
+  .use(express.json())
+  .use(errorHandler);
 
-    // Routes
 app
-    .use('/api', router)
-    .use('/auth', authRouter);
+    .use('/auth', authRouter)
+    .use('/api', isAuthenticated, router)
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });

@@ -2,7 +2,6 @@
 import * as db from '../database/db';
 import { ValidationError, NotFoundError } from '../middleware/errors';
 
-
 export const createEntity = (table: string, data: any) => {
   console.log(data);
   if (!data) throw new ValidationError(['Error'], "Data is required for creating.");

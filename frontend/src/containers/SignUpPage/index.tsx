@@ -3,28 +3,29 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Link from "../../components/Link";
+
+//
 
 
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-    const [id, setId] = React.useState(''); 
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
+    const useState = React.useState;
+    const [id, setId] = useState(''); 
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (event: React.FormEvent) => {
       event.preventDefault();
 
-      fetch("http://localhost:4001/api/register", {
+      fetch("http://localhost:4001/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id, username ,password }),
@@ -77,7 +78,7 @@ export default function SignUp() {
                                     id="id"
                                     label="id"
                                     name="Gym ID"
-                                    autoComplete="gym-id"
+                                    autoComplete="off"
                                     onChange={(e) => setId(e.target.value)}
                                 />
                             </Grid>

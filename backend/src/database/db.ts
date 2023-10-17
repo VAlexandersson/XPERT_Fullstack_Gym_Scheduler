@@ -20,12 +20,12 @@ export const readById =(table: string, id: number) => {
 
 
 export const deleteById = (table: string, id: number) => {
-  return db.prepare(`DELETE FROM ${table} WHERE id = ?`).run(id).changes;
+  return db.prepare(`DELETE FROM ${table} WHERE ID = ?`).run(id).changes;
 };
 
 
 export const updateById = (table: string, id: number, data: any) => {
     const setClause = Object.keys(data).map(key => `${key} = ?`).join(',');
     const values = [...Object.values(data), id];
-    return db.prepare(`UPDATE ${table} SET ${setClause} WHERE id = ?`).run(...values).changes;
+    return db.prepare(`UPDATE ${table} SET ${setClause} WHERE  = ?`).run(...values).changes;
 };

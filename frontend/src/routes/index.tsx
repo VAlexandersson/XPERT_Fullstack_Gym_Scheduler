@@ -12,15 +12,9 @@ import * as React from "react";
 const PageRoutes: React.FC = () => {
     return (
         <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignUpPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/" element={
-                <ProtectedRoute isAuthenticated={true}>
-                    <Dashboard/>
-                </ProtectedRoute>
-            } />
+            <Route path="/login" element={<LoginPage/>} />
+            <Route path="/signup" element={<SignUpPage/>} />
+            <Route path="/" element={ <Dashboard/>} />
 
 
             <Route path="/browse" element={<BrowsePage/>} />
