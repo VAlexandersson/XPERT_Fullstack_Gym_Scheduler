@@ -47,7 +47,7 @@ export default function SignIn() {
   const handleSubmit = async (event: React.FormEvent) => {
       event.preventDefault();
 
-      fetch('http://localhost:4001/auth/', {
+      fetch('http://localhost:4001/auth/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
