@@ -21,10 +21,6 @@ import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 import NavigationBar from "../navigationBar";
 
 
-/*I get some errors in this file, but it seems to work fine*/
-
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Exercises()
