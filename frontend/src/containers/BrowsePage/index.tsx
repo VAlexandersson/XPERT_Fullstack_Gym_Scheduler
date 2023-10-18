@@ -91,7 +91,6 @@ function DifficultyFilter(props : {onFilter})
     const [difficulty, setDifficulty] = useState(0)
     function handleChange(a, choice) {
         setDifficulty(choice.props.value)
-        console.log(choice.props.value)
         props.onFilter(choice.props.value)
     }
 
@@ -120,7 +119,7 @@ function DifficultyFilter(props : {onFilter})
 function Album(allExercises) {
 
     let cards = [];
-    const [exerciseCatalog, setExerciseCatalog] = useState(allExercises.allExercises.catalog)
+    const [exerciseCatalog, setExerciseCatalog] = useState(allExercises.allExercises)
     const [catalog, setCatalog] = useState(exerciseCatalog);
 
     for (let i = 0; i < catalog.length; i++)
@@ -128,7 +127,6 @@ function Album(allExercises) {
         cards.push(i) /*This tells us how many "cards" there should be on the page
                       *This number is equal to the amount of exercises*/
     }
-    console.log(cards.length)
 
     function changeCatalog(newCatalog)
     {
@@ -146,7 +144,6 @@ function Album(allExercises) {
 
     function handleFilter(difficultyLevel)
     {
-        console.log("HANDLEFILTER");
         let filteredCatalog = [];
 
         if (difficultyLevel == 0)
