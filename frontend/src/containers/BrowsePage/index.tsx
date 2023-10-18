@@ -63,7 +63,7 @@ export default function Exercises()
 
 function Difficulty(difficulty)
 {
-    let boxStyle = {width: '25%', position: 'relative', left:'10%', top: '5%'};
+    let boxStyle = {width: '25%', position: 'relative', left:'20%', top: '0%'};
 
     if (difficulty.difficulty == 3) {
         return (
@@ -235,9 +235,8 @@ function Album(allExercises) {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-                                        <Button size="small">View</Button>
-                                        <Button size="small">Edit</Button>
-                                        <Difficulty difficulty={catalog[card].difficulty}></Difficulty>
+                                            <Typography gutterBottom color='primary' sx={{position:'relative', left:'15%'}}>DIFFICULTY: </Typography>
+                                            <Difficulty difficulty={catalog[card].difficulty}></Difficulty>
                                     </CardActions>
                                 </Card>
                             </Grid>
