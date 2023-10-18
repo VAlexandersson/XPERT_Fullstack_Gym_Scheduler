@@ -1,32 +1,38 @@
-import { useNavigate } from "react-router-dom";
-import React, { useContext } from "react";
-import Button from "@mui/material/Button";
-import CssBaseline from '@mui/material/CssBaseline';
+import * as React from "react";
+import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { CssBaseline, ThemeProvider, Typography } from "@mui/material";
+import { Toolbar } from "@mui/material";
+import { Card, CardContent } from "@mui/material/";
+import NavigationBar from "../navigationBar";
+import { createTheme } from "@mui/material/styles";
 
-import Link from "../../components/Link";
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
 
-import useAuth from '../../hooks/useAuth';
-const Dashboard = () => {
-    const { logout } = useAuth();  
-    const navigate = useNavigate();
-
-    const handleLogout = () => {
-        logout();
-        navigate('/login');
-    }
+export default function ProfilePage() {
+  const [showWorkoutInfo, setShowWorkoutInfo] = React.useState(false);
 
   return (
-    <div>
+    <ThemeProvider theme={defaultTheme}>
+      <CssBaseline />
+      <NavigationBar>
+        <Toolbar>
+          <Typography variant="h6" color="inherit" noWrap>
+            Xperta Workout Planner
+          </Typography>
+        </Toolbar>
+      </NavigationBar>
+      <main style={{ display: "flex", marginTop: "1%" }}>
 
-      <Button  onClick={handleLogout}>Logout</Button>
-
-      <Link href="/" variant="body2"> {"Dashboard"} </Link>
-      <Link href="/faq" variant="body2"> {"FAQ"} </Link>
-      <Link href="/other" variant="body2"> {"OTHER"} </Link>
-      <Link href="/admin" variant="body2"> {"ADMIN"} </Link>
-
-    </div>
+        <div style={{ flex: 1 }}>
+          <Card
+            style={{ height: "100%", display: "flex", flexDirection: "column" }}
+          >
+          </Card>
+        </div>
+      </main>
+    </ThemeProvider>
   );
-};
-
-export default Dashboard;
+}

@@ -23,7 +23,7 @@ const defaultTheme = createTheme();
 
 export default function SignIn() {
 
-  const { setUser } = useAuth();
+  const { login } = useAuth();
   
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,7 +60,7 @@ export default function SignIn() {
             console.log('Login successful!');
             const Role_ID = data.role;
             const user = {ID, password, Role_ID};
-            setUser(user);
+            login(user);
             setID('');
             setPassword('');
             navigate(from, { replace: true});

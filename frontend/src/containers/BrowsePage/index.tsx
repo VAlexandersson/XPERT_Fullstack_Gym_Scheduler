@@ -35,10 +35,9 @@ export default function Exercises()
 
     const getAllExercises = () => {
         fetch("http://localhost:4001/api/exercise", {
-            method: "GET",
-            headers: {
-                "Content-type": "text/html; charset=UTF-8"
-            }
+            method: "GET",        
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
         })
             .then(async (response) =>
             {

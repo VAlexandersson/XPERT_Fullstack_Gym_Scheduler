@@ -8,6 +8,7 @@ const Admin = () => {
       <Link href="/faq" variant="body2"> {"FAQ"} </Link>
       <Link href="/other" variant="body2"> {"OTHER"} </Link>
       <Link href="/admin" variant="body2"> {"ADMIN"} </Link>
+      <Link href="/browse" variant="body2"> {"BROWSE"} </Link>
     </div>
   )
 };
