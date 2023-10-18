@@ -192,17 +192,14 @@ function Album(allExercises) {
                         >
                             Exercises
                         </Typography>
-                        <Typography variant="h5" align="center" color="text.secondary" paragraph>
-                            By signing up now, you can access a huge catalog of
-                            excercises.
-                        </Typography>
+
                         <Stack
                             sx={{ pt: 4 }}
                             direction="row"
                             spacing={2}
                             justifyContent="center"
                         >
-                            <Button variant="contained" href="signup">Sign up now</Button>
+
                         </Stack>
                     </Container>
                 </Box>
