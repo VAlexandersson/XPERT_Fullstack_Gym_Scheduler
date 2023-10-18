@@ -121,7 +121,8 @@ function DifficultyFilter(props : {onFilter})
 function Album(allExercises) {
 
     let cards = [];
-    const [catalog, setCatalog] = useState(allExercises.allExercises.catalog);
+    const [exerciseCatalog, setExerciseCatalog] = useState(allExercises.allExercises.catalog)
+    const [catalog, setCatalog] = useState(exerciseCatalog);
 
     for (let i = 0; i < catalog.length; i++)
     {
@@ -143,18 +144,6 @@ function Album(allExercises) {
         setCatalog(newCatalog)
     }
 
-    function getAllExercises(){
-        fetch("http://localhost:4001/api/browse", {
-            method: "GET",
-            headers: {
-                "Content-type": "text/html; charset=UTF-8"
-            }
-        })
-            .then(async (response) =>
-            {
-                changeCatalog(await response.json());
-            });
-    }
 
     function handleFilter(difficultyLevel)
     {
@@ -163,17 +152,19 @@ function Album(allExercises) {
 
         if (difficultyLevel == 0)
         {
-            getAllExercises()
+            filteredCatalog = exerciseCatalog
         }
 
         else {
-            for (let i = 0; i < catalog.length; i++) {
-                if (catalog[i].difficulty == difficultyLevel) {
-                    filteredCatalog.push(catalog[i])
+            for (let i = 0; i < exerciseCatalog.length; i++) {
+                if (exerciseCatalog[i].difficulty == difficultyLevel) {
+                    filteredCatalog.push(exerciseCatalog[i])
                 }
             }
-            changeCatalog(filteredCatalog)
+
         }
+
+        changeCatalog(filteredCatalog)
     }
 
     return (
