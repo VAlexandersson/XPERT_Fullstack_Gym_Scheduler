@@ -18,7 +18,7 @@ import Easy from '../../assets/Easy.png';
 import Medium from '../../assets/Medium.png';
 import Hard from '../../assets/Hard.png';
 import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
-
+import NavigationBar from "../navigationBar";
 
 /*I get some errors in this file, but it seems to work fine*/
 
@@ -37,11 +37,10 @@ export default function Exercises()
     }, []);
 
     const getAllExercises = () => {
-        fetch("http://localhost:4001/api/browse", {
+        fetch("http://localhost:4001/api/exercise", {
             method: "GET",
-            headers: {
-                "Content-type": "text/html; charset=UTF-8"
-            }
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
         })
             .then(async (response) =>
             {
@@ -170,13 +169,13 @@ function Album(allExercises) {
     return (
         <ThemeProvider theme={defaultTheme}>
             <CssBaseline />
-            <AppBar position="relative">
+            <NavigationBar>
                 <Toolbar>
                     <Typography variant="h6" color="inherit" noWrap>
                         Xperta Workout Planner
                     </Typography>
                 </Toolbar>
-            </AppBar>
+            </NavigationBar>
             <main>
                 {/* Hero unit */}
                 <Box

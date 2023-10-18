@@ -1,10 +1,23 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
+import { ThemeProvider } from "@emotion/react";
+import { CssBaseline } from "@mui/material";
+import theme from "./theme";
 import App from "./App";
-
-
+import { AuthProvider } from "./context/AuthProvider";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-      <App></App>
+  <React.StrictMode>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Router>
+        <AuthProvider>
+          <Routes>
+            <Route path="/*" element={<App />} />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </ThemeProvider>
+  </React.StrictMode>
 );
-
