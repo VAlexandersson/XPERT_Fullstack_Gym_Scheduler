@@ -19,11 +19,9 @@ import Medium from '../../assets/Medium.png';
 import Hard from '../../assets/Hard.png';
 import {FormControl, InputLabel, MenuItem, Select} from '@mui/material';
 import NavigationBar from "../navigationBar";
-
 /*I get some errors in this file, but it seems to work fine*/
+import missingImage from '../../assets/missing.png'; 
 
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Exercises()
@@ -49,10 +47,7 @@ export default function Exercises()
             });
     }
 
-    if (isLoading)
-    {
-        return <div className="App">Loading...</div>;
-    }
+    if (isLoading) { return <div className="App">Loading...</div>; }
     return (
         <>
             <Album allExercises={nodes}></Album>
@@ -127,138 +122,136 @@ function Album(allExercises) {
         cards.push(i) /*This tells us how many "cards" there should be on the page
                       *This number is equal to the amount of exercises*/
     }
-
     function changeCatalog(newCatalog)
     {
         cards = []
-
         for (let i = 0; i < newCatalog.length; i++)
         {
             cards.push(i) /*This tells us how many "cards" there should be on the page
                       *This number is equal to the amount of exercises*/
         }
-
         setCatalog(newCatalog)
     }
-
-
-    function handleFilter(difficultyLevel)
-    {
+    function handleFilter(difficultyLevel) {
         let filteredCatalog = [];
-
         if (difficultyLevel == 0)
         {
             filteredCatalog = exerciseCatalog
         }
-
         else {
             for (let i = 0; i < exerciseCatalog.length; i++) {
                 if (exerciseCatalog[i].difficulty == difficultyLevel) {
                     filteredCatalog.push(exerciseCatalog[i])
                 }
             }
-
         }
-
         changeCatalog(filteredCatalog)
     }
 
     return (
-        <ThemeProvider theme={defaultTheme}>
-            <CssBaseline />
-            <NavigationBar>
-                <Toolbar>
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Xperta Workout Planner
-                    </Typography>
-                </Toolbar>
-            </NavigationBar>
-            <main>
-                {/* Hero unit */}
-                <Box
+      <ThemeProvider theme={defaultTheme}>
+        <CssBaseline />
+        <NavigationBar>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              Xperta Workout Planner
+            </Typography>
+          </Toolbar>
+        </NavigationBar>
+        <main>
+          {/* Hero unit */}
+          <Box
+            sx={{
+              bgcolor: "background.paper",
+              pt: 8,
+              pb: 6,
+            }}
+          >
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="text.primary"
+                gutterBottom
+              >
+                Exercises
+              </Typography>
+
+              <Stack
+                sx={{ pt: 4 }}
+                direction="row"
+                spacing={2}
+                justifyContent="center"
+              ></Stack>
+            </Container>
+          </Box>
+          <Container>
+            <Grid container spacing={2}>
+              <Grid item xs={2}>
+                <DifficultyFilter onFilter={handleFilter} />
+              </Grid>
+            </Grid>
+          </Container>
+          <Container sx={{ py: 8 }} maxWidth="md">
+            {/* End hero unit */}
+            <Grid container spacing={4}>
+              {cards.map((card) => (
+                <Grid item key={card} xs={12} sm={6} md={4}>
+                  <Card
                     sx={{
-                        bgcolor: 'background.paper',
-                        pt: 8,
-                        pb: 6,
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
                     }}
-                >
-                    <Container maxWidth="sm">
-                        <Typography
-                            component="h1"
-                            variant="h2"
-                            align="center"
-                            color="text.primary"
-                            gutterBottom
-                        >
-                            Exercises
-                        </Typography>
-
-                        <Stack
-                            sx={{ pt: 4 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-
-                        </Stack>
-                    </Container>
-                </Box>
-                <Container>
-                    <Grid container spacing={2}>
-                        <Grid item xs={2}>
-                            <DifficultyFilter onFilter={handleFilter}/>
-                        </Grid>
-                    </Grid>
-                </Container>
-                <Container sx={{ py: 8 }} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
-                                <Card
-                                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
-                                >
-                                    <CardMedia
-                                        component="div"
-                                        sx={{
-                                            // 16:9
-                                            pt: '56.25%',
-                                        }}
-                                        image="https://source.unsplash.com/random?wallpapers"
-                                    />
-                                    <CardContent sx={{ flexGrow: 1 }}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {catalog[card].name}
-                                        </Typography>
-                                        <Typography>
-                                            {catalog[card].description}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                            <Typography gutterBottom color='primary' sx={{position:'relative', left:'15%'}}>DIFFICULTY: </Typography>
-                                            <Difficulty difficulty={catalog[card].difficulty}></Difficulty>
-                                    </CardActions>
-                                </Card>
-                            </Grid>
-                        ))}
-                    </Grid>
-                </Container>
-            </main>
-            {/* Footer */}
-            <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
-                <Typography variant="h6" align="center" gutterBottom>
-
-                </Typography>
-                <Typography
-                    variant="subtitle1"
-                    align="center"
-                    color="text.secondary"
-                    component="p"
-                >
-
-                </Typography>
-            </Box>
-            {/* End footer */}
-        </ThemeProvider>
+                  >
+                    <CardMedia
+                      component="img"
+                      alt="Exercise Image"
+                      height="180"
+                      image={`/ExerciseCatalog/${catalog[card].ID}.png`}
+                      onError={(e) => {
+                        const imgElement = e.target as HTMLImageElement;
+                        imgElement.onerror = null;
+                        imgElement.src =
+                          "/ExerciseCatalog/missing.png";
+                      }}
+                    />
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {catalog[card].name}
+                      </Typography>
+                      <Typography>{catalog[card].description}</Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Typography
+                        gutterBottom
+                        color="primary"
+                        sx={{ position: "relative", left: "15%" }}
+                      >
+                        DIFFICULTY:{" "}
+                      </Typography>
+                      <Difficulty
+                        difficulty={catalog[card].difficulty}
+                      ></Difficulty>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Container>
+        </main>
+        {/* Footer */}
+        <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+          <Typography variant="h6" align="center" gutterBottom></Typography>
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="text.secondary"
+            component="p"
+          ></Typography>
+        </Box>
+        {/* End footer */}
+      </ThemeProvider>
     );
 }
