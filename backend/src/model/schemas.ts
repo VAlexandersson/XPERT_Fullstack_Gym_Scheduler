@@ -41,7 +41,7 @@ export type Role = {
 
 export type PlannedWorkout = {
     ID: number;
-    WorkoudID: number;
+    WorkoutID: number;
     date: Date;
 }
 
