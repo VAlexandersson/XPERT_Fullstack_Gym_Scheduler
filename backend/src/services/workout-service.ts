@@ -39,8 +39,7 @@ export const getPlannedWorkouts = (id: number) => {
             PlannedWorkout.ID,
             PlannedWorkout.WorkoutID,
             PlannedWorkout.date,
-            Workout.name,
-            Workout.UserID
+            Workout.name
         FROM PlannedWorkout
         JOIN Workout ON PlannedWorkout.WorkoutID = Workout.ID
         WHERE date >= date('now') AND Workout.UserID = ?
