@@ -24,7 +24,8 @@ Thumbs.db
 
 # SQLite Database
 *.db
-*.sqlite
+dbTest.sqlite
+./backend/sessiondb.sqlite
 
 # TypeScript Compiler Output
 *.tsbuildinfo

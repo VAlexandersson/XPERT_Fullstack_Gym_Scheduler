@@ -1,31 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import * as React from "react";
+import { Routes, Route } from 'react-router-dom';
+import Layout from "./containers/Layout";
+import LoginPage from "./containers/LoginPage";
+import SignUpPage from "./containers/SignUpPage";
+import Dashboard from "./containers/Dashboard";
+import Missing from "./containers/Missing";
+import RequireAuth from "./components/RequireAuth";
+import AdminPage from "./containers/AdminPage";
+import OtherPage from "./containers/OtherPage";
+import FAQPage from "./containers/FAQPage";
+import Browse from "./containers/BrowsePage";
+import ProfilePage from "./containers/ProfilePage";
 
-
-import LoginComponent from './components/LoginComponent';
-import NavigationBar from './components/NavigationBar';
-
-
-import HomePage from './containers/HomePage';
-import TestPage from './containers/TestPage';
-import FAQPage from './containers/FAQPage';
-
-
-import './App.css';
-
-const App: React.FC = () => {
+export default function App() {
   return (
-    <Router>
-      <div>
-        <NavigationBar />
-        <Routes>
-          <Route path="/" Component ={HomePage}/>
-          <Route path="/login" Component ={LoginComponent}/>
-          <Route path="/test" Component ={TestPage}/>
-          <Route path="/faq" Component={FAQPage}/>
-        </Routes>
-      </div>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+
+
+        <Route element={<RequireAuth allowedRoles={[1, 2, 3]}/>}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/other" element={<OtherPage />} />
+          <Route path="/faq" element={<FAQPage />} />
+          <Route path="/browse" element={<Browse />} />
+          <Route path="/profile" element={<ProfilePage />} />
+
+        </Route>
+        <Route element={<RequireAuth allowedRoles={[2, 3]}/>}>
+          <Route path="/admin" element={<AdminPage />} />
+        </Route>
+        <Route path="*" element={<Missing/>}/>
+      </Route>
+    </Routes>
   );
 }
-
-export default App
